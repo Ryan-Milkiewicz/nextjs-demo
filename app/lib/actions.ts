@@ -4,7 +4,7 @@ import { z } from 'zod';
 import { sql } from '@vercel/postgres';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
-import { signIn } from '@/app/auth';
+import { signIn } from '@/auth';
 import { AuthError } from 'next-auth';
 
  
@@ -126,7 +126,6 @@ export async function authenticate(
 ) {
   try {
     await signIn('credentials', formData);
-    console.log(formData);
   } catch (error) {
     if (error instanceof AuthError) {
       switch (error.type) {
